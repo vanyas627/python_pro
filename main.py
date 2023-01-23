@@ -11,6 +11,10 @@ class Goods:
         self.price = price
         self.currency = currency
         self.description = description
+
+        if int(self.price) <= 0:
+            raise PriceError(self.price)
+
     def __str__(self):
         return f"Goods name: {self.name}, Price: {self.price} {self.currency} Description: {self.description}"
 
@@ -49,12 +53,12 @@ goods_2 = Goods("Toy", "-60", "UAH", "This goods was made in Chine")
 customer_1 = Customer("Ivan", "Sotsenko", "576132897")
 basket = Basket("UAH", customer_1,goods_1,goods_1,goods_1,goods_2,goods_2)
 
-
-print(goods_1)
-print(goods_2)
-
-print()
 try:
-    print(basket)
+    print(goods_1)
+    print(goods_2)
 except PriceError as error:
     print(error)
+
+print()
+print(basket)
+
