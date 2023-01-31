@@ -13,7 +13,9 @@ try:
     print(goods_1)
     print(goods_2)
     print()
-    print(basket)
+    print(basket[1:3])
+    for el in basket:
+        print(el)
 except NameError:
     print("You entered the wrong price. Try again!")
 

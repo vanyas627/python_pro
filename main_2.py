@@ -25,3 +25,6 @@ finally:
     print(group)
 
 print(group.find_student("Sotsenko"))
+for el in group:
+    print(el)
+
