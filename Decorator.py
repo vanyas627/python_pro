@@ -33,10 +33,11 @@ def sub(a,b):
 # 3
 def decorator(f):
     def decorator_2(self):
+        tmp = f(self)
         file = open(f"{self.__class__.__name__}.txt", "w")
-        file.write(f(self))
+        file.write(tmp)
         file.close()
-        return f(self)
+        return tmp
     return decorator_2
 
 class Cat:
@@ -51,19 +52,22 @@ class Cat:
 
 
 # 4
-
+import time
 def decorate_function(amount, file_name):
     def decorate_function_2(f):
         def decorate_function_123(*args,**kwargs):
+            start = time.time()
             file = open(f"{file_name}.txt", "w")
             for el in range(amount):
-                file.write(f"{f(*args)}\n")
+                f(*args)
+            end = time.time()
+            file.write(f"{end - start}\n")
             file.close()
+
         return decorate_function_123
     return decorate_function_2
 
-@decorate_function(1,"Ivan")
+@decorate_function(10000,"Ivan")
 def pow(a):
     return a ** 2
-
 
