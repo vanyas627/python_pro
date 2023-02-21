@@ -44,7 +44,7 @@ class MyDescriptor:
         self.strng = strng
 
     def __get__(self, instance, owner):
-        pass
+        return instance.__dict__[self.strng]
 
     def __set__(self, instance, value):
         raise AttributeError()
@@ -66,6 +66,9 @@ class Dog2:
     def __str__(self):
         return f"Dog: Name - {self.name}, Age - {self.age}, Color - {self.color}"
 
+dog1 = Dog2("BArsik",13, "White")
+
+print(dog1.name)
 # 5
 class Desritpion:
     def __init__(self, name):
@@ -116,6 +119,10 @@ class Dog:
 import abc
 class Abstraction(abc.ABC):
     @abc.abstractmethod
+    def simple_number(self, num):
+        pass
+
+class Number(Abstraction):
     def simple_number(self, num):
         if not isinstance(num, int):
             return False
